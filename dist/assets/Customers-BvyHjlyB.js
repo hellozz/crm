@@ -1,0 +1,2 @@
+import{o as s,c as r,l as t,a as n,V as a}from"./index-4M5coEX7.js";import{_ as c}from"./_plugin-vue_export-helper-BOI6pPb-.js";/* empty css                 */const l={};function m(p,e){const o=a;return s(),r("div",null,[e[0]||(e[0]=t("h1",null,"客户",-1)),e[1]||(e[1]=t("p",{class:"hint"},"RFC v0.4 §1.3 - 客户列表 + CustomerSelect 组件(1.5.6)",-1)),n(o,{description:"待集成 CustomerSelect + 客户列表"})])}const u=c(l,[["render",m],["__scopeId","data-v-23925b52"]]);export{u as default};
+//# sourceMappingURL=Customers-BvyHjlyB.js.map
