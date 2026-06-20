@@ -21,7 +21,9 @@ let refreshing = false
 api.interceptors.response.use(
   (resp) => resp,
   async (error: AxiosError) => {
-    if (error.response?.status === 401 && !error.config?._retry) {
+    // _retry 是我们自定义的属性,需要 cast
+    const cfg = error.config as (typeof error.config & { _retry?: boolean }) | undefined
+    if (error.response?.status === 401 && !cfg?._retry) {
       if (refreshing) {
         return Promise.reject(error)
       }
@@ -36,11 +38,11 @@ api.interceptors.response.use(
         const r = await axios.post("/api/v1/auth/token/refresh/", { refresh })
         const newAccess = (r.data as { access: string }).access
         localStorage.setItem("access_token", newAccess)
-        if (error.config) {
-          error.config._retry = true
-          error.config.headers = error.config.headers ?? {}
-          error.config.headers.Authorization = `Bearer ${newAccess}`
-          return api.request(error.config)
+        if (cfg) {
+          cfg._retry = true
+          cfg.headers = cfg.headers ?? {}
+          cfg.headers.Authorization = `Bearer ${newAccess}`
+          return api.request(cfg)
         }
       } catch {
         localStorage.clear()
