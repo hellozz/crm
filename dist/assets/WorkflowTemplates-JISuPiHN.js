@@ -1,0 +1,2 @@
+import{o as s,c as r,l as o,a as n,V as a}from"./index-CTcC-sJN.js";import{_ as l}from"./_plugin-vue_export-helper-BOI6pPb-.js";/* empty css                 */const p={};function c(m,e){const t=a;return s(),r("div",null,[e[0]||(e[0]=o("h1",null,"审批流模板",-1)),e[1]||(e[1]=o("p",{class:"hint"}," RFC v0.4 §4.8.1 - 超管门(只 is_superuser=True 可见) + 审批流可视化编辑器(2.6 P2) ",-1)),n(t,{description:"P2 阶段任务,待启动"})])}const f=l(p,[["render",c],["__scopeId","data-v-9698d7b6"]]);export{f as default};
+//# sourceMappingURL=WorkflowTemplates-JISuPiHN.js.map

@@ -71,6 +71,8 @@ const tiles = ref<Tile[]>([
   { key: "mProfit", label: "本月总利润", value: "-", loading: true, error: false },
   { key: "receivable", label: "总应收款", value: "-", loading: true, error: false },
   { key: "payable", label: "总应付款", value: "-", loading: true, error: false },
+  { key: "mDrafts", label: "本月起草合同数", value: "-", loading: true, error: false },
+  { key: "mDraftAmount", label: "本月起草合同总金额", value: "-", loading: true, error: false },
 ])
 
 function fmtYuan(s: string | number | null | undefined): string {
@@ -171,7 +173,7 @@ async function refresh() {
   const month = new Date().getMonth() + 1
 
   // 6 个独立 GET,部分失败独立 catch(RFC v0.4 §4.1.0)
-  const [cQuarter, cMonth, iMonth, pMonth, rSum, pSum] = await Promise.all([
+  const [cQuarter, cMonth, cDraft, iMonth, pMonth, rSum, pSum] = await Promise.all([
     safeGet("/contracts/", {
       status: "active",
       created_at__gte: qStart,
@@ -179,6 +181,11 @@ async function refresh() {
     }),
     safeGet("/contracts/", {
       status: "active",
+      created_at__gte: mStart,
+      page_size: 1000,
+    }),
+    safeGet("/contracts/", {
+      status: "draft",
       created_at__gte: mStart,
       page_size: 1000,
     }),
@@ -273,6 +280,20 @@ async function refresh() {
     setTile("payable", fmtYuan(num))
   } else {
     errTile("payable")
+  }
+
+  // 1.5.30 本月起草合同(状态 draft)
+  if (cDraft) {
+    const cnt = cDraft.count ?? 0
+    const sum = (cDraft.results ?? []).reduce(
+      (s: number, x: { amount: string }) => s + Number(x.amount || 0),
+      0,
+    )
+    setTile("mDrafts", String(cnt), `本月`)
+    setTile("mDraftAmount", fmtYuan(sum))
+  } else {
+    errTile("mDrafts")
+    errTile("mDraftAmount")
   }
 
   // 总体错误提示(全部失败)
