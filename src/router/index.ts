@@ -37,6 +37,12 @@ const routes: RouteRecordRaw[] = [
         meta: { title: "客户" },
       },
       {
+        path: "expenses",
+        name: "expenses",
+        component: () => import("@/views/Expenses.vue"),
+        meta: { title: "报销" },
+      },
+      {
         path: "workflow-templates",
         name: "workflow-templates",
         component: () => import("@/views/WorkflowTemplates.vue"),
