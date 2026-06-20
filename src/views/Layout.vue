@@ -58,9 +58,13 @@
 import { onMounted } from "vue"
 import { useRoute } from "vue-router"
 import { useUserStore } from "@/stores/user"
+import { useApprovalNotifications } from "@/composables/useApprovalNotifications"
 
 const route = useRoute()
 const userStore = useUserStore()
+// RFC v0.4 §4.11.2 修法 #97:启动审批通知 composable
+// 5 min 轮询 + visibilitychange + 退避 + localStorage 去重
+const { isPolling } = useApprovalNotifications()
 
 onMounted(async () => {
   if (!userStore.user) {
