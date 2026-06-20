@@ -22,6 +22,10 @@
           <el-icon><User /></el-icon>
           <span>客户</span>
         </el-menu-item>
+        <el-menu-item index="/contracts">
+          <el-icon><Document /></el-icon>
+          <span>合同</span>
+        </el-menu-item>
         <el-menu-item index="/expenses">
           <el-icon><Money /></el-icon>
           <span>报销</span>
