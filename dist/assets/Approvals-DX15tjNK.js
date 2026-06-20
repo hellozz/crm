@@ -1,0 +1,2 @@
+import{a as s,c as n,s as t,b as r,X as a}from"./index-MUcKWKAS.js";import{_ as c}from"./_plugin-vue_export-helper-BOI6pPb-.js";const p={};function l(_,e){const o=a;return s(),n("div",null,[e[0]||(e[0]=t("h1",null,"我的审批",-1)),e[1]||(e[1]=t("p",{class:"hint"},"RFC v0.4 §1.3 - 我的待办 API 集成 + 飞书通知(1.5.26)",-1)),r(o,{description:"待集成我的待办 API"})])}const i=c(p,[["render",l],["__scopeId","data-v-eec43382"]]);export{i as default};
+//# sourceMappingURL=Approvals-DX15tjNK.js.map
