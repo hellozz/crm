@@ -56,7 +56,6 @@
         </el-form-item>
         <el-form-item label="标题" prop="title">
           <el-input v-model="form.title" placeholder="例:2026年度开发服务合同" />
-        </el-table>
         </el-form-item>
         <el-form-item label="客户" prop="customer">
           <CustomerSelect
